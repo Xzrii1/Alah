@@ -16,6 +16,7 @@
       color: #222;
       transition: background-color 0.4s, color 0.4s;
       overflow-x: hidden;
+      min-height: 100vh;
     }
     body.dark {
       background-color: #121212;
@@ -216,7 +217,7 @@
       <a href="#portfolio">Portofolio</a>
       <a href="#cv">CV</a>
     </div>
-    <button class="toggle-dark" aria-label="Toggle Dark Mode">
+    <button class="toggle-dark" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
       <!-- Sun icon -->
       <svg class="icon sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="5"></circle>
@@ -239,7 +240,7 @@
   <div class="container">
     <img src="https://i.pravatar.cc/150" alt="Foto Nazri" class="profile-pic" />
 
-    <section id="portfolio">
+    <section id="portfolio" class="visible">
       <h2>Portofolio</h2>
       <div class="portfolio-item" tabindex="0">
         <h3>Project Website Toko Online</h3>
@@ -259,4 +260,37 @@
       <h2>Curriculum Vitae</h2>
       <p><strong>Nama:</strong> Nazri</p>
       <p><strong>Pendidikan:</strong> SMK Teknik Informatika, Lulus 2024</p>
-      <p><strong>Pengalaman
+      <p><strong>Pengalaman Kerja:</strong></p>
+      <ul>
+        <li>Magang di perusahaan IT selama 6 bulan</li>
+        <li>Mengerjakan project freelance pembuatan website</li>
+      </ul>
+      <p><strong>Keahlian:</strong> HTML, CSS, JavaScript, React, Node.js</p>
+      <p><strong>Kontak:</strong> nazri@email.com | 0812-3456-7890</p>
+    </section>
+  </div>
+
+  <script>
+    const toggleBtn = document.querySelector('.toggle-dark');
+    const body = document.body;
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      // Optional: save mode in localStorage
+      if(body.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Load theme from localStorage
+    window.addEventListener('load', () => {
+      if(localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark');
+      }
+    });
+  </script>
+
+</body>
+</html>
