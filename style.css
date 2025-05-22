@@ -1,0 +1,94 @@
+:root {
+  --bg-light: #f9fafb;
+  --bg-dark: #121212;
+  --text-light: #1f2937;
+  --text-dark: #e5e7eb;
+  --accent: #4f46e5;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--accent);
+  color: white;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar li a, .navbar button {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+section {
+  padding: 2rem;
+}
+
+.portfolio-card {
+  background: rgba(0,0,0,0.03);
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.portfolio-card:hover {
+  transform: scale(1.02);
+}
+
+.portfolio-card img {
+  width: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.cv-box {
+  background: rgba(0,0,0,0.03);
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  background: #eee;
+}
+
+body.dark footer {
+  background: #1e1e1e;
+}
