@@ -2,16 +2,17 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portofolio Azril Nazri</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Azril Nazri - Portofolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <h1 class="logo">AzrilNazri</h1>
+  <header class="navbar">
+    <h1 class="logo">Azril</h1>
+    <nav>
       <ul>
-        <li><a href="index.html">Portofolio</a></li>
+        <li><a href="index.html" class="active">Portofolio</a></li>
         <li><a href="cv.html">CV</a></li>
         <li><button id="theme-toggle"><span id="theme-icon">🌙</span></button></li>
       </ul>
@@ -19,21 +20,20 @@
   </header>
 
   <main>
-    <section>
-      <h2>Portofolio</h2>
-      <div class="portfolio-card">
-        <img src="foto-kamu.jpg" alt="Foto Azril">
-        <h3>Azril Nazri</h3>
-        <p>Bug Hunter | Web Dev | Pelajar SMK</p>
-        <p>Spesialisasi: Keamanan Web, Reverse Engineering Dasar, dan Frontend Dev</p>
+    <section class="hero">
+      <h2>Selamat datang di Portofolio</h2>
+      <p>Nama gue Azril Nazri, bug hunter dan web developer.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Frontend Developer</h3>
+          <p>HTML, CSS, JavaScript, React</p>
+        </div>
+        <div class="card">
+          <h3>Bug Hunter</h3>
+          <p>Pengalaman bounty di HackerOne & Bugcrowd</p>
+        </div>
       </div>
     </section>
   </main>
-
-  <footer>
-    <p>© 2025 Azril Nazri. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
