@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nazri Project</title>
+  <title>Portofolio & CV Nazri</title>
   <style>
-    /* Reset dan dasar styling */
+    /* Reset & dasar */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
       scroll-behavior: smooth;
     }
     body {
@@ -27,13 +25,13 @@
     /* Navbar */
     nav {
       position: fixed;
-      top: 0;
-      width: 100%;
+      top: 0; left: 0; right: 0;
       background: #fff;
       display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 0;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 60px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       transition: background 0.4s, box-shadow 0.4s;
       z-index: 1000;
@@ -42,38 +40,83 @@
       background: #222;
       box-shadow: 0 2px 8px rgba(255,255,255,0.1);
     }
+    nav .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
     nav a {
       text-decoration: none;
       font-weight: 600;
       color: #222;
       transition: color 0.3s;
       cursor: pointer;
+      font-size: 1rem;
+      position: relative;
     }
     body.dark nav a {
       color: #eee;
     }
-    nav a:hover {
-      color: #ff0055;
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #ff0055;
+      left: 0; bottom: -5px;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after {
+      width: 100%;
     }
 
-    /* Dark mode toggle button */
+    /* Toggle dark mode button */
     .toggle-dark {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: #ff0055;
+      background: none;
       border: none;
-      border-radius: 20px;
-      width: 45px;
-      height: 25px;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(255,0,85,0.5);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      color: #ff0055;
       outline: none;
-      z-index: 1100;
-      transition: background 0.4s;
+      position: relative;
     }
     .toggle-dark:hover {
-      background: #e6004a;
+      transform: scale(1.2);
+    }
+
+    /* Sun & moon icon */
+    .icon {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: all 0.5s ease;
+      position: absolute;
+    }
+    .icon.sun {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+    body.dark .icon.sun {
+      opacity: 0;
+      transform: rotate(90deg) scale(0);
+      transition-delay: 0.1s;
+    }
+    .icon.moon {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0);
+    }
+    body.dark .icon.moon {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+      transition-delay: 0.3s;
     }
 
     /* Container */
@@ -128,13 +171,12 @@
       margin-bottom: 15px;
       border-radius: 10px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      transition: box-shadow 0.3s ease;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
       cursor: pointer;
     }
     .portfolio-item:hover {
       box-shadow: 0 6px 20px rgba(255, 0, 85, 0.3);
       transform: translateY(-5px);
-      transition: all 0.3s ease;
     }
     body.dark .portfolio-item {
       background: #1e1e1e;
@@ -156,6 +198,9 @@
     /* Responsive */
     @media (max-width: 600px) {
       nav {
+        padding: 0 1rem;
+      }
+      .nav-links {
         gap: 1rem;
       }
       .container {
@@ -166,11 +211,29 @@
 </head>
 <body>
 
-  <button class="toggle-dark" aria-label="Toggle Dark Mode"></button>
-
   <nav>
-    <a href="#portfolio">Portofolio</a>
-    <a href="#cv">CV</a>
+    <div class="nav-links">
+      <a href="#portfolio">Portofolio</a>
+      <a href="#cv">CV</a>
+    </div>
+    <button class="toggle-dark" aria-label="Toggle Dark Mode">
+      <!-- Sun icon -->
+      <svg class="icon sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <!-- Moon icon -->
+      <svg class="icon moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 0111.21 3 7 7 0 1012 21a9 9 0 009-8.21z"></path>
+      </svg>
+    </button>
   </nav>
 
   <div class="container">
@@ -196,43 +259,4 @@
       <h2>Curriculum Vitae</h2>
       <p><strong>Nama:</strong> Nazri</p>
       <p><strong>Pendidikan:</strong> SMK Teknik Informatika, Lulus 2024</p>
-      <p><strong>Pengalaman Kerja:</strong> Magang di perusahaan IT lokal, freelance developer</p>
-      <p><strong>Skill:</strong> HTML, CSS, JavaScript, React, Node.js</p>
-      <p><strong>Kontak:</strong> nazri@example.com | WhatsApp: 08123456789</p>
-    </section>
-  </div>
-
-  <script>
-    // Toggle dark mode
-    const toggleBtn = document.querySelector('.toggle-dark');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      // Save mode preference ke localStorage (biar inget kalau reload)
-      if(document.body.classList.contains('dark')){
-        localStorage.setItem('mode', 'dark');
-      } else {
-        localStorage.setItem('mode', 'light');
-      }
-    });
-
-    // Load preferensi mode dari localStorage saat halaman dimuat
-    if(localStorage.getItem('mode') === 'dark'){
-      document.body.classList.add('dark');
-    }
-
-    // Animasi scroll masuk section ala TikTok
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.2 });
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-  </script>
-</body>
-</html>
+      <p><strong>Pengalaman
