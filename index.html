@@ -1,112 +1,238 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Interactive Website</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: #1e1e1e;
-            color: #f5f5f5;
-            scroll-behavior: smooth;
-        }
-        header {
-            position: fixed;
-            width: 100%;
-            background: rgba(30, 30, 30, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
-        nav a {
-            color: #f5f5f5;
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #ff6b6b;
-        }
-        .hero {
-            height: 100vh;
-            background-image: url('https://source.unsplash.com/1600x900/?luxury');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            text-align: center;
-            animation: fadeIn 2s ease;
-        }
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-        h1 {
-            font-size: 4rem;
-        }
-        .content {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .card {
-            background-color: #2a2a2a;
-            margin: 1.5rem 0;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        footer {
-            background-color: #1e1e1e;
-            padding: 2rem;
-            text-align: center;
-            color: #888;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nazri Project</title>
+  <style>
+    /* Reset dan dasar styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
+      color: #222;
+      transition: background-color 0.4s, color 0.4s;
+      overflow-x: hidden;
+    }
+    body.dark {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.4s, box-shadow 0.4s;
+      z-index: 1000;
+    }
+    body.dark nav {
+      background: #222;
+      box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #222;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    body.dark nav a {
+      color: #eee;
+    }
+    nav a:hover {
+      color: #ff0055;
+    }
+
+    /* Dark mode toggle button */
+    .toggle-dark {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #ff0055;
+      border: none;
+      border-radius: 20px;
+      width: 45px;
+      height: 25px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(255,0,85,0.5);
+      outline: none;
+      z-index: 1100;
+      transition: background 0.4s;
+    }
+    .toggle-dark:hover {
+      background: #e6004a;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 100px auto 50px;
+      padding: 0 20px;
+    }
+
+    /* Foto Profil */
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transform: scale(1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .profile-pic:hover {
+      transform: scale(1.1);
+    }
+
+    /* Section */
+    section {
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #ff0055;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Portofolio item */
+    .portfolio-item {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio-item:hover {
+      box-shadow: 0 6px 20px rgba(255, 0, 85, 0.3);
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+    }
+    body.dark .portfolio-item {
+      background: #1e1e1e;
+      box-shadow: 0 3px 10px rgba(255,0,85,0.3);
+    }
+    body.dark .portfolio-item:hover {
+      box-shadow: 0 6px 20px rgba(255, 0, 85, 0.7);
+    }
+
+    /* CV style */
+    .cv-section p {
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .cv-section strong {
+      color: #ff0055;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav {
+        gap: 1rem;
+      }
+      .container {
+        margin-top: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div>LuxuryBrand</div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
-    <section class="hero">
-        <h1>Experience the Future of Luxury</h1>
+
+  <button class="toggle-dark" aria-label="Toggle Dark Mode"></button>
+
+  <nav>
+    <a href="#portfolio">Portofolio</a>
+    <a href="#cv">CV</a>
+  </nav>
+
+  <div class="container">
+    <img src="https://i.pravatar.cc/150" alt="Foto Nazri" class="profile-pic" />
+
+    <section id="portfolio">
+      <h2>Portofolio</h2>
+      <div class="portfolio-item" tabindex="0">
+        <h3>Project Website Toko Online</h3>
+        <p>Bikin website jualan yang responsif dengan fitur cart dan checkout.</p>
+      </div>
+      <div class="portfolio-item" tabindex="0">
+        <h3>Aplikasi Android Reminder</h3>
+        <p>Aplikasi pengingat tugas dan jadwal dengan notifikasi real-time.</p>
+      </div>
+      <div class="portfolio-item" tabindex="0">
+        <h3>Bot Telegram Otomatis</h3>
+        <p>Bot buat broadcast pesan dan auto reply chat.</p>
+      </div>
     </section>
-    <div class="content">
-        <div class="card">
-            <h2>About Us</h2>
-            <p>LuxuryBrand is a leading name in premium solutions, offering unparalleled quality and design.</p>
-        </div>
-        <div class="card">
-            <h2>Our Services</h2>
-            <p>We provide cutting-edge solutions with a touch of elegance to elevate your digital experience.</p>
-        </div>
-    </div>
-    <footer>
-        &copy; 2025 LuxuryBrand - Redefining Sophistication
-    </footer>
+
+    <section id="cv" class="cv-section">
+      <h2>Curriculum Vitae</h2>
+      <p><strong>Nama:</strong> Nazri</p>
+      <p><strong>Pendidikan:</strong> SMK Teknik Informatika, Lulus 2024</p>
+      <p><strong>Pengalaman Kerja:</strong> Magang di perusahaan IT lokal, freelance developer</p>
+      <p><strong>Skill:</strong> HTML, CSS, JavaScript, React, Node.js</p>
+      <p><strong>Kontak:</strong> nazri@example.com | WhatsApp: 08123456789</p>
+    </section>
+  </div>
+
+  <script>
+    // Toggle dark mode
+    const toggleBtn = document.querySelector('.toggle-dark');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      // Save mode preference ke localStorage (biar inget kalau reload)
+      if(document.body.classList.contains('dark')){
+        localStorage.setItem('mode', 'dark');
+      } else {
+        localStorage.setItem('mode', 'light');
+      }
+    });
+
+    // Load preferensi mode dari localStorage saat halaman dimuat
+    if(localStorage.getItem('mode') === 'dark'){
+      document.body.classList.add('dark');
+    }
+
+    // Animasi scroll masuk section ala TikTok
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
