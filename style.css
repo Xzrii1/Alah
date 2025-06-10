@@ -141,7 +141,7 @@ a:hover {
 }
 
 .cv-photo img {
-  width: 100px;
+  width: 200px;
   height: auto;
   object-fit: cover;
   border-radius: 100px;
